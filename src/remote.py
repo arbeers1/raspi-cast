@@ -16,9 +16,4 @@ class Remote:
     def netflix(self):
         self.driver.get('https://www.netflix.com')
 
-remote = Remote()
-remote.netflix()
-print('here1')
-time.sleep(2)
-print('here2')
-remote.youtube()
+
