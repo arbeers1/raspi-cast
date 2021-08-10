@@ -6,7 +6,7 @@
 <form action="/shows" method="POST">
 	<input id="search" name="search" type="search">
 </form>
-<div class="show">
+<div id={{ id1 }} class="show" onclick="localStorage.setItem('nfid', this.id); location.href = $SCRIPT_ROOT + '/episodes';">
   <div>
     <img src={{ img1 }}>
     <h1>{{ shw1 }}</h1>
@@ -14,7 +14,7 @@
     <p>{{ desc1 }}</p>
 </div>
 
-<div class="show">
+<div id={{ id2 }} class="show">
   <div>
     <img src={{ img2 }}>
     <h1>{{ shw2 }}</h1>
@@ -22,7 +22,7 @@
     <p>{{ desc2 }}</p>
 </div>
 
-<div class="show">
+<div id={{ id3 }} class="show">
   <div>
     <img src={{ img3 }}>
     <h1>{{ shw3 }}</h1>
@@ -30,7 +30,7 @@
     <p>{{ desc3 }}</p>
 </div>
 
-<div class="show">
+<div id={{ id4 }} class="show">
   <div>
     <img src={{ img4 }}>
     <h1>{{ shw4 }}</h1>
@@ -38,7 +38,7 @@
     <p>{{ desc4 }}</p>
 </div>
 
-<div class="show">
+<div id={{ id5 }} class="show">
   <div>
     <img src={{ img5 }}>
     <h1>{{ shw5 }}</h1>

@@ -1,0 +1,51 @@
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>$SCRIPT_ROOT = {{ request.script_root|tojson }}; </script>
+	<script>
+		var js;
+		$(document).ready(function() {
+		  $.getJSON($SCRIPT_ROOT + '/episode/results', {
+		    nfid: localStorage.getItem('nfid')
+		  }, function(data){
+			js = data;
+ 			build_season(2);
+		  });
+		});
+
+		function build_season(sea){
+		    for(var i = 0; i < js['result'][sea]['episodes'].length; i++){
+		     (function(){
+		       var $div = $('<div/>',{
+		          id: js['result'][sea - 1]['episodes'][i]['epid']
+		       });
+		       $div.click(function(){
+		          $.getJSON($SCRIPT_ROOT + '/watch', {
+			    epid: $div.attr('id')
+			  }, function(data){});
+		       });
+
+		       var $inner_div = $('<div/>',{
+		          id: 'inner'
+		       }).appendTo($div);
+
+		       $('<img/>', {
+			  src: js['result'][sea - 1]['episodes'][i]['img']
+		       }).appendTo($inner_div);
+
+		       $('<h1/>', {
+			  text: js['result'][sea - 1]['episodes'][i]['title']
+		       }).appendTo($inner_div);
+
+		       $('<p/>', {
+			  text: js['result'][sea - 1]['episodes'][i]['synopsis']
+		       }).appendTo($div);
+
+		       $div.appendTo('#container');
+		    })();
+	           }
+		  }
+	</script>
+</head>
+<div id="container"></div>
+

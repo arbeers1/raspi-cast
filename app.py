@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template, request
 import sys
 sys.path.append(sys.path[0] + '/src/')
 from src.remote import Remote
+import json
 
 remote = Remote()
 app = Flask(__name__)
@@ -31,21 +32,34 @@ def shows():
     images = []
     shows = []
     descriptions = []
+    ids = []
     for x in range(len(result)):
         images.append(result[x]['img'])
         shows.append(result[x]['title'])
         descriptions.append(result[x]['synopsis'])
+        ids.append(result[x]['nfid'])
     while(len(images) < 5):
         images.append('')
         shows.append('')
         descriptions.append('')
+        ids.append('')
     return render_template('netsearch.html',
-            img1=images[0], shw1=shows[0], desc1=descriptions[0],
-            img2=images[1], shw2=shows[1], desc2=descriptions[1],
-            img3=images[2], shw3=shows[2], desc3=descriptions[2],
-            img4=images[3], shw4=shows[3], desc4=descriptions[3],
-            img5=images[4], shw5=shows[4], desc5=descriptions[4]
+            img1=images[0], shw1=shows[0], desc1=descriptions[0], id1=ids[0],
+            img2=images[1], shw2=shows[1], desc2=descriptions[1], id2=ids[1],
+            img3=images[2], shw3=shows[2], desc3=descriptions[2], id3=ids[2],
+            img4=images[3], shw4=shows[3], desc4=descriptions[3], id4=ids[3],
+            img5=images[4], shw5=shows[4], desc5=descriptions[4], id5=ids[4]
             )
 
+@app.route('/episodes')
+def episodes():
+    return render_template('netepisodes.html')
 
+@app.route('/episode/results')
+def episode_results():
+    return jsonify(result=remote.episodes(request.args.get('nfid')))
 
+@app.route('/watch')
+def watch():
+    remote.netflix(request.args.get('epid'))
+    return jsonify(result='success')
