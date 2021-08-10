@@ -2,8 +2,12 @@
 #Description: Interfaces webbrowser to navigate youtube/netflix
 #Author: Alex Beers
 
+import os
+import config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+print(os.environ['API_KEY'])
 
 class Remote:
 
@@ -25,6 +29,9 @@ class Remote:
         self.driver.get('https://www.youtube.com/tv')
 
     def netflix(self):
+        """
+        Opens a netflix video given its watch_code obtained through (method)
+        """
         self.driver.get('https://www.netflix.com')
 
 
