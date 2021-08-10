@@ -2,6 +2,7 @@
 #Description: Interfaces webbrowser to navigate youtube/netflix
 #Author: Alex Beers
 
+import os
 import subprocess
 import config
 import requests
