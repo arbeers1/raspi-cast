@@ -1,2 +1,13 @@
-<button>Youtube</button>
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>$SCRIPT_ROOT = {{ request.script_root|tojson }};</script>
+	<script>
+		function set_media(youtube, netflix, epid){
+			if(youtube){$.getJSON($SCRIPT_ROOT + '/youtube', {}, function(data){});}
+			else if(netflix){}
+		}
+	</script>
+</head>
+<button onclick="set_media(true, false, 0);")>Youtube</button>
 <button>Netflix</button>
