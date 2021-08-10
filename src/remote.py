@@ -45,7 +45,7 @@ class Remote:
             A json containing json array 'results' where each array element is a single show.
         """
         head = {'x-rapidapi-key': os.environ['API_KEY'], 'x-rapidapi-host': 'unogsng.p.rapidapi.com'}
-        result = requests.get(url='https://unogsng.p.rapidapi.com/search', params={'query': search, 'limit': 10, 'countrylist': 78}, headers=head)
+        result = requests.get(url='https://unogsng.p.rapidapi.com/search', params={'query': search, 'limit': 5, 'countrylist': 78}, headers=head)
         return result.json()
 
     def episodes(self, nfid):
