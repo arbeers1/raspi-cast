@@ -1,0 +1,47 @@
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>$SCRIPT_ROOT = {{ request.script_root|tojson }}; </script>
+</head>
+<form action="/shows" method="POST">
+	<input id="search" name="search" type="search">
+</form>
+<div class="show">
+  <div>
+    <img src={{ img1 }}>
+    <h1>{{ shw1 }}</h1>
+  </div>
+    <p>{{ desc1 }}</p>
+</div>
+
+<div class="show">
+  <div>
+    <img src={{ img2 }}>
+    <h1>{{ shw2 }}</h1>
+  </div>
+    <p>{{ desc2 }}</p>
+</div>
+
+<div class="show">
+  <div>
+    <img src={{ img3 }}>
+    <h1>{{ shw3 }}</h1>
+  </div>
+    <p>{{ desc3 }}</p>
+</div>
+
+<div class="show">
+  <div>
+    <img src={{ img4 }}>
+    <h1>{{ shw4 }}</h1>
+  </div>
+    <p>{{ desc4 }}</p>
+</div>
+
+<div class="show">
+  <div>
+    <img src={{ img5 }}>
+    <h1>{{ shw5 }}</h1>
+  </div>
+    <p>{{ desc5 }}</p>
+</div>
