@@ -2,36 +2,67 @@
 #Description: Interfaces webbrowser to navigate youtube/netflix
 #Author: Alex Beers
 
-import os
+import subprocess
 import config
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-print(os.environ['API_KEY'])
+import requests
 
 class Remote:
-
-    def __init__(self):
-        """
-        Creates a new web driver which can be called upon.
-        """
-        options = Options()
-        options.add_argument('user-agent=Mozilla/5.0 (Linux; Tizen 2.3 ) AppleWebKit/538.1 (KHTML, like Gecko) Version/2.3 TV Safari/538.1')
-        options.add_argument('--start-maximized')
-        options.add_argument('user-data-dir=/home/pi/.config/chromium')
-        options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.driver = webdriver.Chrome(executable_path='/lib/chromium-browser/chromedriver', options=options)
     
     def youtube(self):
         """
         Opens youtube tv app in the current window.
         """
-        self.driver.get('https://www.youtube.com/tv')
+        self.kill()
+        args = []
+        args.append('chromium-browser')
+        args.append('--kiosk')
+        args.append('--user-agent="Mozilla/5.0 (Linux; U; Tizen 2.3 ) AppleWebKit/538.1 (KHTML, like Gecko) Version/2.3 TV Safari/538.1"')
+        args.append('https://youtube.com/tv')
+        subprocess.Popen(args)
 
-    def netflix(self):
+    def netflix(self, epid):
         """
         Opens a netflix video given its watch_code obtained through (method)
+        
+        Paramaters
+            epid - the netflix episode id as provided by calling episodes()
         """
-        self.driver.get('https://www.netflix.com')
+        self.kill()
+        args = []
+        args.append('chromium-browser')
+        args.append('--kiosk')
+        args.append('https://netflix.com/watch/' + str(epid))
+        subprocess.Popen(args)
 
+    def search_show(self, search):
+        """
+        Search for a show based off of its name.
 
+        Paramaters
+            search - a string to search
+
+        Returns
+            A json containing json array 'results' where each array element is a single show.
+        """
+        head = {'x-rapidapi-key': os.environ['API_KEY'], 'x-rapidapi-host': 'unogsng.p.rapidapi.com'}
+        result = requests.get(url='https://unogsng.p.rapidapi.com/search', params={'query': search, 'limit': 10, 'countrylist': 78}, headers=head)
+        return result.json()
+
+    def episodes(self, nfid):
+        """
+        Search for episodes given a shows netflix id
+
+        Paramaters
+            nfid - A netflix id tied to a show
+
+        Returns a json of an array of seasons where each season is an array of episodes
+        """
+        head = {'x-rapidapi-key': os.environ['API_KEY'], 'x-rapidapi-host': 'unogsng.p.rapidapi.com'}
+        result = requests.get(url='https://unogsng.p.rapidapi.com/episodes', params={'netflixid': nfid}, headers=head)
+        return result.json()
+
+    def kill(self):
+        """
+        Kills the chromium browser
+        """
+        subprocess.call(['pkill', '-o', 'chromium'])
