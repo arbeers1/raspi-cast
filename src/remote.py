@@ -6,8 +6,12 @@ import os
 import subprocess
 import config
 import requests
+from pynput.keyboard import Key, Controller
 
 class Remote:
+
+    def __init__(self):
+        self.k = Controller()
     
     def youtube(self):
         """
@@ -67,3 +71,10 @@ class Remote:
         Kills the chromium browser
         """
         subprocess.call(['pkill', '-o', 'chromium'])
+
+    def play_pause(self):
+        """
+        Simulates pressing the space key
+        """
+        self.k.press(Key.space)
+        self.k.release(Key.space)

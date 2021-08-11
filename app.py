@@ -68,3 +68,8 @@ def watch():
 def quit():
     remote.kill()
     return jsonify(result='success')
+
+@app.route('/control')
+def control():
+    remote.play_pause()
+    return jsonify(result='success')

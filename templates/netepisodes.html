@@ -42,13 +42,15 @@
 		       $('<img/>', {
 			  src: js['result'][sea - 1]['episodes'][i]['img']
 		       }).appendTo($inner_div);
-
+		       
+		       let head = js['result'][sea-1]['episodes'][i]['title'];
 		       $('<h1/>', {
-			  text: js['result'][sea - 1]['episodes'][i]['title']
+			  text: head
 		       }).appendTo($inner_div);
 
+		       let p = js['result'][sea-1]['episodes'][i]['synopsis'];
 		       $('<p/>', {
-			  text: js['result'][sea - 1]['episodes'][i]['synopsis']
+			  text: p
 		       }).appendTo($div);
 
 		       $div.appendTo('#container');
