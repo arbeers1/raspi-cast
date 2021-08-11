@@ -1,0 +1,38 @@
+div{
+ background-color: #303030;
+}
+
+body{
+  background-color: #303030;
+}
+
+button{
+  font-size: 6vh;
+  font-weight: bold;
+  border-radius: 10px;	
+  display: block;
+  width: 95%;
+  height: 30%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+button:active{
+ background-color: #505050;
+}
+
+#youtube{
+  background-color: #c4302b;
+  color: #f3f3f3;
+}
+
+#netflix{
+  background-color: black;
+  color: #e50914
+}
+
+#quit{
+  background-color: #c4302b;
+  color: #f3f3f3;
+}
+

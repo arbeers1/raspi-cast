@@ -3,5 +3,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>$SCRIPT_ROOT = {{ request.script_root|tojson }};</script>
 </head>
-<button onclick="$.getJSON($SCRIPT_ROOT + '/youtube', {}, function(data){});")>Youtube</button>
-<button onclick="location.href = location.href + 'search';">Netflix</button>
+<body>
+  <button id="youtube" onclick="$.getJSON($SCRIPT_ROOT + '/youtube', {}, function(data){});")>Youtube</button>
+  <button id="netflix" onclick="location.href = location.href + 'search';">Netflix</button>
+  <button id="quit">Quit</button>
+</body>
