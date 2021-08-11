@@ -9,15 +9,25 @@
 		    nfid: localStorage.getItem('nfid')
 		  }, function(data){
 			js = data;
- 			build_season(2);
+			for(var i = 0; i < js['result'].length; i++){
+			  let o = new Option('Season ' + i+1, i+1);
+			  $(o).html('Season ' + (i+1));
+			  $('#seasons').append(o);
+			}
+			$('#seasons').change(function(){
+			  build_season($('#seasons').val());
+			});
+ 			build_season(1);
 		  });
 		});
 
 		function build_season(sea){
-		    for(var i = 0; i < js['result'][sea]['episodes'].length; i++){
+		    $('#container').empty();
+		    for(var i = 0; i < js['result'][sea-1]['episodes'].length; i++){
 		     (function(){
 		       var $div = $('<div/>',{
-		          id: js['result'][sea - 1]['episodes'][i]['epid']
+		          id: js['result'][sea - 1]['episodes'][i]['epid'],
+			  class: 'show'
 		       });
 		       $div.click(function(){
 		          $.getJSON($SCRIPT_ROOT + '/watch', {
@@ -26,7 +36,7 @@
 		       });
 
 		       var $inner_div = $('<div/>',{
-		          id: 'inner'
+		          class: 'imgc'
 		       }).appendTo($div);
 
 		       $('<img/>', {
@@ -47,5 +57,9 @@
 		  }
 	</script>
 </head>
-<div id="container"></div>
-
+<body>
+  <div id="controls">
+	  <button id="home" onclick="location.href = $SCRIPT_ROOT + '/'">Home</button>
+	  <select id="seasons"><select>
+  <div id="container"></div>
+</body>
