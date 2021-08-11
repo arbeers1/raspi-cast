@@ -12,6 +12,7 @@ class Remote:
 
     def __init__(self):
         self.k = Controller()
+        subprocess.Popen(['unclutter', '-idle', '0'])
     
     def youtube(self):
         """
