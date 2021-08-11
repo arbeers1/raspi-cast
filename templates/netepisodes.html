@@ -43,15 +43,11 @@
 			  src: js['result'][sea - 1]['episodes'][i]['img']
 		       }).appendTo($inner_div);
 		       
-		       let head = js['result'][sea-1]['episodes'][i]['title'];
-		       $('<h1/>', {
-			  text: head
-		       }).appendTo($inner_div);
+		       $head = $('<h1/>', {}).appendTo($inner_div);
+                       $head.html(js['result'][sea-1]['episodes'][i]['title']);
 
-		       let p = js['result'][sea-1]['episodes'][i]['synopsis'];
-		       $('<p/>', {
-			  text: p
-		       }).appendTo($div);
+		       $p = $('<p/>', {}).appendTo($div);
+		       $p.html(js['result'][sea-1]['episodes'][i]['synopsis']);
 
 		       $div.appendTo('#container');
 		    })();
