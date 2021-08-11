@@ -35,8 +35,8 @@ def shows():
     ids = []
     for x in range(len(result)):
         images.append(result[x]['img'])
-        shows.append(result[x]['title'])
-        descriptions.append(result[x]['synopsis'])
+        shows.append(result[x]['title'].replace('&#39;', '\''))
+        descriptions.append(result[x]['synopsis'].replace('&#39;', '\''))
         ids.append(result[x]['nfid'])
     while(len(images) < 5):
         images.append('')
@@ -62,4 +62,9 @@ def episode_results():
 @app.route('/watch')
 def watch():
     remote.netflix(request.args.get('epid'))
+    return jsonify(result='success')
+
+@app.route('/quit')
+def quit():
+    remote.kill()
     return jsonify(result='success')
