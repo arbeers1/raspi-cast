@@ -3,11 +3,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>$SCRIPT_ROOT = {{ request.script_root|tojson }}; </script>
 </head>
+<body>
 <form action="/shows" method="POST">
-	<input id="search" name="search" type="search">
+	<input id="search" name="search" type="search" placeholder="Search Netflix">
 </form>
 <div id={{ id1 }} class="show" onclick="localStorage.setItem('nfid', this.id); location.href = $SCRIPT_ROOT + '/episodes';">
-  <div>
+  <div class="imgc">
     <img src={{ img1 }}>
     <h1>{{ shw1 }}</h1>
   </div>
@@ -15,7 +16,7 @@
 </div>
 
 <div id={{ id2 }} class="show">
-  <div>
+  <div class="imgc">
     <img src={{ img2 }}>
     <h1>{{ shw2 }}</h1>
   </div>
@@ -23,7 +24,7 @@
 </div>
 
 <div id={{ id3 }} class="show">
-  <div>
+  <div class="imgc">
     <img src={{ img3 }}>
     <h1>{{ shw3 }}</h1>
   </div>
@@ -31,7 +32,7 @@
 </div>
 
 <div id={{ id4 }} class="show">
-  <div>
+  <div class="imgc">
     <img src={{ img4 }}>
     <h1>{{ shw4 }}</h1>
   </div>
@@ -39,9 +40,10 @@
 </div>
 
 <div id={{ id5 }} class="show">
-  <div>
+  <div class="imgc">
     <img src={{ img5 }}>
     <h1>{{ shw5 }}</h1>
   </div>
     <p>{{ desc5 }}</p>
 </div>
+</body>

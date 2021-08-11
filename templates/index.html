@@ -6,5 +6,5 @@
 <body>
   <button id="youtube" onclick="$.getJSON($SCRIPT_ROOT + '/youtube', {}, function(data){});")>Youtube</button>
   <button id="netflix" onclick="location.href = location.href + 'search';">Netflix</button>
-  <button id="quit">Quit</button>
+  <button id="quit" onclick="$.getJSON($SCRIPT_ROOT + '/quit', {}, function(data){});">Quit</button>
 </body>
